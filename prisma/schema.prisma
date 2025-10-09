@@ -60,10 +60,17 @@ model Notification {
   read    Boolean  @default(false)
   sentAt  DateTime @default(now()) @map("sent_at")
 
+  type NotificationType @default(GENERAL) @map("type")
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("notifications")
+}
+
+enum NotificationType {
+  GENERAL
+  PRESS_RELEASE
 }
